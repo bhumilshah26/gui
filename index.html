@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DJS ARYA</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-...">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBrfHSzAab2V2ju0tUaZg3h0cBDC0wFsp4&callback=initMap"
+        async defer></script>
+    <script src="https://threejs.org/build/three.js"></script>
+</head>
+
+<body>
+    <div class="flex-container">
+        <div id="flex-item-1">
+            <img src="images/arya-removebg-preview.png">
+            <a class="val scroll-link" href="#graphs">Graphs</a>
+            <a class="val" href="#graphs">3D-Model</a>
+            <a class="val" href="#graphs">CSV</a>
+            <!-- Timeline -->
+            <div class="dropdown">
+                <button class="dropdown-button heading" onclick="toggleDropdown()">Software States</button>
+                <div class="flowchart dropdown-content">
+                    <div class="flowchart-box">Boot</div>
+                    <div class="flowchart-line"></div>
+                    <div class="flowchart-box">Launch Wait</div>
+                    <div class="flowchart-line"></div>
+                    <div class="flowchart-box">Ascent</div>
+                    <div class="flowchart-line"></div>
+                    <div class="flowchart-box">Rocket Separation</div>
+                    <div class="flowchart-line"></div>
+                    <div class="flowchart-box">Descent</div>
+                    <div class="flowchart-line"></div>
+                    <div class="flowchart-box">Second Parachute Release</div>
+                    <div class="flowchart-line"></div>
+                    <div class="flowchart-box">TP Release</div>
+                    <div class="flowchart-line"></div>
+                    <div class="flowchart-box">Landed</div>
+                </div>
+            </div>
+        </div>
+        <div class="flex-column">
+            <div class="flex-column-1 inner-flex-container">
+                <div class="inner-flex-item inner-flex-item-2-1" id="inner-flex-item-2-1">DJS ARYA</div>
+                <div class="inner-flex-item">
+                    <button class="inline-element play-button">
+                        <i class="fas fa-play"></i>
+                    </button>
+                    <button class="inline-element stop-button">
+                        <i class="fas fa-stop"></i>
+                    </button>
+                    <button class="inline-element reload-button">
+                        <i class="fas fa-redo"></i>
+                    </button>
+                </div>
+                <img class="inner-flex-item" id="image" src="images/indiaflag.png" height="80px" width="150px">
+            </div>
+            <div class="flex-column-2 inner-flex-container-2" id="flex-item-3">
+                <div class="inside-items-1">
+                    <div class="inner-flex-item-2" id="timer">
+                        Mission Time :00:00:00
+                    </div>
+                    <div class="inner-flex-item-3">
+                        Team ID : 2005
+                    </div>
+                </div>
+                <div class="outside-main-content">
+                    <div class="main-item-1 graphs-flex-container">
+                        <div id="map" style="height: 400px; width: 300px;"></div>
+                        <div class="flex-inner-item-2">
+                            <div class="whole-command">
+                                <div class="command">
+                                    <input type="search" placeholder="Write a command..." class="wrt-command">
+                                    <div class="command-simulation">
+                                        <div class="simulation">Simulation MODE</div>
+                                        <div class="toggle-switch">
+                                            <input type="checkbox" id="toggle">
+                                            <label for="toggle"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <img id="img2" src="images/speedometer.png"> -->
+                            </div>
+                            <div class="points">
+                                <pre>
+Packet Count : 135
+Pressure : 1001
+State : 7
+CMD_echo : CX_ON</pre>
+                            </div>
+                            <div class="telemetry-points">Telemetry Data Points :</div>
+                            <div class="rows">
+                                <div class="columns">
+                                    <div class="c-1">GPS TIME : 05:04:23</div>
+                                    <div class="c-1">GPS SATS : 4</div>
+                                    <div class="c-1">PC_DEPLOYED : C</div>
+                                </div>
+                                <div class="columns">
+                                    <div class="c-1">GPS Altitude : 69 </div>
+                                    <div class="c-1">Mode : S</div>
+                                    <div class="c-1">AIR SPEED : 34m/s</div>
+                                </div>
+                                <div class="columns">
+                                    <div class="c-1">GPS(Lat, Long) : 13.7°, 34.5° </div>
+                                    <div class="c-1">HS_DEPLOYED : C</div>
+                                    <div class="c-1">GPS TIME : 05:04:23</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="graphs" id="graphs">
+                        <div class="graphs-flex-container">
+                            <div class="chartContainer">
+                                <canvas id="rollingChart" class="myChart3"></canvas>
+                            </div>
+                            <div class="graph-inner-flex-item">Altitude</div>
+                            <div class="chartContainer">
+                                <canvas id="rollingChart2" class="myChart5"></canvas>
+                            </div>
+                            <div class="graph-inner-flex-item">Pressure</div>
+                            <div class="chartContainer">
+                                <canvas id="rollingChart3" class="myChart2"></canvas>
+                            </div>
+                            <div class="graph-inner-flex-item">Tilt_X</div>
+                        </div>
+                        <div class="graphs-flex-container">
+                            <div class="chartContainer">
+                                <canvas id="rollingChart4" class="myChart4"></canvas>
+                                <div class="graph-inner-flex-item">Temperature</div>
+                            </div>
+                            <div class="chartContainer">
+                                <canvas id="rollingChart5" class="myChart1"></canvas>
+                                <div class="graph-inner-flex-item">Voltage</div>
+                            </div>
+                            <div class="chartContainer">
+                                <canvas id="rollingChart6" class="myChart6"></canvas>
+                                <div class="graph-inner-flex-item">Tilt_Y</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div id="graph-container" style="height: 100px;width: 200px;"></div> -->
+                </div>
+            </div>
+        </div>
+        <script src="script.js"></script>
+
+</body>
+
+</html>
+<!-- Drop-down for com and draft -->
